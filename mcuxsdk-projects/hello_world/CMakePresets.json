@@ -1,0 +1,181 @@
+{
+  "version": 7,
+  "cmakeMinimumRequired": {
+    "major": 3
+  },
+  "configurePresets": [
+    {
+      "name": "ddr_debug",
+      "displayName": "ddr_debug",
+      "generator": "Ninja",
+      "binaryDir": "${fileDir}//${presetName}",
+      "toolchainFile": "$env{SdkRootDirPath}/mcuxsdk/cmake/toolchain/armgcc.cmake",
+      "inherits": "ddr_debug-env",
+      "cacheVariables": {
+        "APP_DIR": {
+          "value": "${fileDir}",
+          "type": "PATH"
+        },
+        "CMAKE_BUILD_TYPE": "ddr_debug",
+        "SdkRootDirPath": "$env{SdkRootDirPath}/mcuxsdk",
+        "CONFIG_TOOLCHAIN": "armgcc",
+        "CMAKE_RUNTIME_OUTPUT_DIRECTORY": "$env{binaryDir}",
+        "CMAKE_LIBRARY_OUTPUT_DIRECTORY": "$env{binaryDir}",
+        "CMAKE_ARCHIVE_OUTPUT_DIRECTORY": "$env{binaryDir}",
+        "WEST": "TRUE",
+        "board": "evkmimx8mp",
+        "PrjRootDirPath": "${fileDir}//"
+      }
+    },
+    {
+      "name": "ddr_release",
+      "displayName": "ddr_release",
+      "generator": "Ninja",
+      "binaryDir": "${fileDir}//${presetName}",
+      "toolchainFile": "$env{SdkRootDirPath}/mcuxsdk/cmake/toolchain/armgcc.cmake",
+      "inherits": "ddr_release-env",
+      "cacheVariables": {
+        "APP_DIR": {
+          "value": "${fileDir}",
+          "type": "PATH"
+        },
+        "CMAKE_BUILD_TYPE": "ddr_release",
+        "SdkRootDirPath": "$env{SdkRootDirPath}/mcuxsdk",
+        "CONFIG_TOOLCHAIN": "armgcc",
+        "CMAKE_RUNTIME_OUTPUT_DIRECTORY": "$env{binaryDir}",
+        "CMAKE_LIBRARY_OUTPUT_DIRECTORY": "$env{binaryDir}",
+        "CMAKE_ARCHIVE_OUTPUT_DIRECTORY": "$env{binaryDir}",
+        "WEST": "TRUE",
+        "board": "evkmimx8mp",
+        "PrjRootDirPath": "${fileDir}//"
+      }
+    },
+    {
+      "name": "debug",
+      "displayName": "debug",
+      "generator": "Ninja",
+      "binaryDir": "${fileDir}//${presetName}",
+      "toolchainFile": "$env{SdkRootDirPath}/mcuxsdk/cmake/toolchain/armgcc.cmake",
+      "inherits": "debug-env",
+      "cacheVariables": {
+        "APP_DIR": {
+          "value": "${fileDir}",
+          "type": "PATH"
+        },
+        "CMAKE_BUILD_TYPE": "debug",
+        "SdkRootDirPath": "$env{SdkRootDirPath}/mcuxsdk",
+        "CONFIG_TOOLCHAIN": "armgcc",
+        "CMAKE_RUNTIME_OUTPUT_DIRECTORY": "$env{binaryDir}",
+        "CMAKE_LIBRARY_OUTPUT_DIRECTORY": "$env{binaryDir}",
+        "CMAKE_ARCHIVE_OUTPUT_DIRECTORY": "$env{binaryDir}",
+        "WEST": "TRUE",
+        "board": "evkmimx8mp",
+        "PrjRootDirPath": "${fileDir}//"
+      }
+    },
+    {
+      "name": "flash_debug",
+      "displayName": "flash_debug",
+      "generator": "Ninja",
+      "binaryDir": "${fileDir}//${presetName}",
+      "toolchainFile": "$env{SdkRootDirPath}/mcuxsdk/cmake/toolchain/armgcc.cmake",
+      "inherits": "flash_debug-env",
+      "cacheVariables": {
+        "APP_DIR": {
+          "value": "${fileDir}",
+          "type": "PATH"
+        },
+        "CMAKE_BUILD_TYPE": "flash_debug",
+        "SdkRootDirPath": "$env{SdkRootDirPath}/mcuxsdk",
+        "CONFIG_TOOLCHAIN": "armgcc",
+        "CMAKE_RUNTIME_OUTPUT_DIRECTORY": "$env{binaryDir}",
+        "CMAKE_LIBRARY_OUTPUT_DIRECTORY": "$env{binaryDir}",
+        "CMAKE_ARCHIVE_OUTPUT_DIRECTORY": "$env{binaryDir}",
+        "WEST": "TRUE",
+        "board": "evkmimx8mp",
+        "PrjRootDirPath": "${fileDir}//"
+      }
+    },
+    {
+      "name": "flash_release",
+      "displayName": "flash_release",
+      "generator": "Ninja",
+      "binaryDir": "${fileDir}//${presetName}",
+      "toolchainFile": "$env{SdkRootDirPath}/mcuxsdk/cmake/toolchain/armgcc.cmake",
+      "inherits": "flash_release-env",
+      "cacheVariables": {
+        "APP_DIR": {
+          "value": "${fileDir}",
+          "type": "PATH"
+        },
+        "CMAKE_BUILD_TYPE": "flash_release",
+        "SdkRootDirPath": "$env{SdkRootDirPath}/mcuxsdk",
+        "CONFIG_TOOLCHAIN": "armgcc",
+        "CMAKE_RUNTIME_OUTPUT_DIRECTORY": "$env{binaryDir}",
+        "CMAKE_LIBRARY_OUTPUT_DIRECTORY": "$env{binaryDir}",
+        "CMAKE_ARCHIVE_OUTPUT_DIRECTORY": "$env{binaryDir}",
+        "WEST": "TRUE",
+        "board": "evkmimx8mp",
+        "PrjRootDirPath": "${fileDir}//"
+      }
+    },
+    {
+      "name": "release",
+      "displayName": "release",
+      "generator": "Ninja",
+      "binaryDir": "${fileDir}//${presetName}",
+      "toolchainFile": "$env{SdkRootDirPath}/mcuxsdk/cmake/toolchain/armgcc.cmake",
+      "inherits": "release-env",
+      "cacheVariables": {
+        "APP_DIR": {
+          "value": "${fileDir}",
+          "type": "PATH"
+        },
+        "CMAKE_BUILD_TYPE": "release",
+        "SdkRootDirPath": "$env{SdkRootDirPath}/mcuxsdk",
+        "CONFIG_TOOLCHAIN": "armgcc",
+        "CMAKE_RUNTIME_OUTPUT_DIRECTORY": "$env{binaryDir}",
+        "CMAKE_LIBRARY_OUTPUT_DIRECTORY": "$env{binaryDir}",
+        "CMAKE_ARCHIVE_OUTPUT_DIRECTORY": "$env{binaryDir}",
+        "WEST": "TRUE",
+        "board": "evkmimx8mp",
+        "PrjRootDirPath": "${fileDir}//"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "ddr_debug",
+      "displayName": "ddr_debug",
+      "configurePreset": "ddr_debug"
+    },
+    {
+      "name": "ddr_release",
+      "displayName": "ddr_release",
+      "configurePreset": "ddr_release"
+    },
+    {
+      "name": "debug",
+      "displayName": "debug",
+      "configurePreset": "debug"
+    },
+    {
+      "name": "flash_debug",
+      "displayName": "flash_debug",
+      "configurePreset": "flash_debug"
+    },
+    {
+      "name": "flash_release",
+      "displayName": "flash_release",
+      "configurePreset": "flash_release"
+    },
+    {
+      "name": "release",
+      "displayName": "release",
+      "configurePreset": "release"
+    }
+  ],
+  "include": [
+    "mcux_include.json"
+  ]
+}

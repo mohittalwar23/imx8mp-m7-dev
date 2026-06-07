@@ -1,0 +1,25 @@
+sai_interrupt_transfer:
+  boards:
+    evkmimx8mp:
+    - -armgcc@ddr_debug
+    - -armgcc@ddr_release
+    - -armgcc@flash_debug
+    - -armgcc@flash_release
+    - -iar@ddr_debug
+    - -iar@ddr_release
+    - -iar@flash_debug
+    - -iar@flash_release
+  contents:
+    document:
+      brief: The sai_interrupt_transfer example shows how to use sai driver with interrupt:In
+        this example, one sai instance playbacks the audio data stored in flash/SRAM
+        using interrupt.
+      category: driver_examples/sai
+      example_readme:
+      - examples/driver_examples/sai/interrupt_transfer/readme.md
+      - ${board_root}/${board}/driver_examples/sai/interrupt_transfer/example_board_readme.md
+      - ${board_root}/${board}/examples_shared_readme.md
+      name: sai_interrupt_transfer${core_id_suffix_name}
+    meta_path: examples/driver_examples/sai/interrupt_transfer
+    project-root-path: boards/${board}/driver_examples/sai/interrupt_transfer/${multicore_foldername}
+  section-type: freestanding_application

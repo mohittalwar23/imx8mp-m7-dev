@@ -1,0 +1,29 @@
+sai_low_power_audio:
+  boards:
+    evkmimx8mp:
+    - -armgcc@ddr_debug
+    - -armgcc@ddr_release
+    - -armgcc@flash_debug
+    - -armgcc@flash_release
+    - -iar@ddr_debug
+    - -iar@ddr_release
+    - -iar@flash_debug
+    - -iar@flash_release
+  contents:
+    document:
+      brief: 'In this demo, A core decoded music data and put it to DDR buffer and
+        informs M core with the related information. Then M core will take the ownership
+        of consuming the buffer, it will copy buffer from DDR to TCM, manipulating
+        SDMA to transfer the data to SAI and codec for playback. It gives DDR and
+        A core opportunity to do power saving for rather long time frame. M core core
+        will also take ownership of codec initialization. SRTM(Simplified Real Time
+        Messaging) protocol is used to communicate between A core an M4 core. '
+      category: demo_apps
+      example_readme:
+      - examples/demo_apps/sai_low_power_audio/readme.md
+      - ${board_root}/${board}/demo_apps/sai_low_power_audio/example_board_readme.md
+      - ${board_root}/${board}/examples_shared_readme.md
+      name: sai_low_power_audio${core_id_suffix_name}
+    meta_path: examples/demo_apps/sai_low_power_audio/.
+    project-root-path: boards/${board}/demo_apps/sai_low_power_audio/${multicore_foldername}
+  section-type: freestanding_application

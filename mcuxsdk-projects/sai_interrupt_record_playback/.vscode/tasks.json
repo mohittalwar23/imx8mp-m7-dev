@@ -6,9 +6,16 @@
       "label": "CMake: build",
       "command": "build",
       "preset": "debug",
-      "targets": ["all"],
-      "group": {"kind": "build", "isDefault": true},
-      "problemMatcher": ["$gcc"],
+      "targets": [
+        "all"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
       "detail": "CMake template build task"
     },
     {
@@ -16,7 +23,9 @@
       "label": "CMake: clean",
       "command": "clean",
       "preset": "debug",
-      "problemMatcher": ["$gcc"],
+      "problemMatcher": [
+        "$gcc"
+      ],
       "detail": "CMake template clean task"
     },
     {
@@ -24,19 +33,10 @@
       "label": "CMake: configure",
       "command": "configure",
       "preset": "debug",
-      "problemMatcher": ["$gcc"],
+      "problemMatcher": [
+        "$gcc"
+      ],
       "detail": "CMake template configure task"
-    },
-    {
-      "label": "Copy to TFTP dir",
-      "type": "shell",
-      "dependsOn": "CMake: build",
-      "command": "cp debug/evkmimx8mp_sai_interrupt_record_playback_cm7.bin ${HOME}/tftp/sai_loopback.bin && echo 'Copied to ~/tftp/sai_loopback.bin'",
-      "options": {"cwd": "${workspaceFolder}"},
-      "group": "build",
-      "problemMatcher": [],
-      "presentation": {"reveal": "always", "panel": "shared"},
-      "detail": "Build then copy .bin to TFTP dir. Needs a 4-pole CTIA headset in J6. Load via U-Boot: setenv ipaddr 192.168.7.2; setenv serverip 192.168.7.1; setenv netmask 255.255.255.0; tftp 0x48000000 sai_loopback.bin; cp.b 0x48000000 0x7e0000 ${filesize}; bootaux 0x7e0000"
     }
   ]
 }

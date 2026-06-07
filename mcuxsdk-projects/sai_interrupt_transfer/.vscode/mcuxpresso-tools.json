@@ -1,0 +1,16 @@
+{
+  "version": "25.3",
+  "toolchainPath": "${userHome}/.mcuxpressotools/arm-gnu-toolchain-14.2.rel1-x86_64-arm-none-eabi",
+  "linkedProjects": [],
+  "trustZoneType": "none",
+  "multicoreType": "none",
+  "projectType": "sdk-v2-freestanding",
+  "projectName": "evkmimx8mp_sai_interrupt_transfer",
+  "sdk": {
+    "version": "26.6.0.0",
+    "path": "${userHome}/mcuxsdk",
+    "boardId": "evkmimx8mp",
+    "deviceId": "MIMX8ML8xxxLZ",
+    "coreId": "cm7"
+  }
+}
