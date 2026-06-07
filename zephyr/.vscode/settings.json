@@ -1,0 +1,9 @@
+{
+    "cmake.buildDirectory": "${workspaceFolder}/build/m7_sync",
+    "cmake.configureArgs": [
+        "-DBOARD=imx8mp_evk/mimx8ml8/m7",
+        "-DAPPLICATION_SOURCE_DIR=${workspaceFolder}/samples/synchronization"
+    ],
+    "serialmonitor.baudRate": 115200,
+    "serialmonitor.portPath": "/dev/ttyUSB3"
+}

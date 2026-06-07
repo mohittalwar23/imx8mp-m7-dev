@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "MCUXpresso: Attach MIMX8ML8_M7 (J-Link)",
+            "type": "cmsis-debug",
+            "request": "attach",
+            "program": "${workspaceFolder}/build/m7_sync/zephyr/zephyr.elf",
+            "servertype": "jlink",
+            "device": "MIMX8ML8_M7",
+            "interface": "jtag",
+            "speed": 4000,
+            "cwd": "${workspaceFolder}",
+            "_comment": "Requires J-Link connected to J17 (20-pin JTAG header). Start M7 via remoteproc first, then attach here."
+        }
+    ]
+}
