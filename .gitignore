@@ -1,0 +1,14 @@
+debug/
+*.elf
+*.bin
+*.map
+*.log
+.config
+mcux_config.h
+mcuxsdk_version.h
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+build.ninja
+.ninja_deps
+.ninja_log
