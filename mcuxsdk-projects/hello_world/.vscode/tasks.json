@@ -1,0 +1,57 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "cmake",
+      "label": "CMake: build",
+      "command": "build",
+      "preset": "debug",
+      "targets": [
+        "all"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "detail": "CMake template build task"
+    },
+    {
+      "type": "cmake",
+      "label": "CMake: clean",
+      "command": "clean",
+      "preset": "debug",
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "detail": "CMake template clean task"
+    },
+    {
+      "type": "cmake",
+      "label": "CMake: configure",
+      "command": "configure",
+      "preset": "debug",
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "detail": "CMake template configure task"
+    },
+    {
+      "label": "Deploy to M7 (remoteproc)",
+      "type": "shell",
+      "dependsOn": "CMake: build",
+      "command": "scp -O -o StrictHostKeyChecking=no -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedAlgorithms=+ssh-rsa debug/evkmimx8mp_hello_world_cm7.elf root@192.168.7.2:/lib/firmware/m7-app.elf && ssh -o StrictHostKeyChecking=no -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedAlgorithms=+ssh-rsa root@192.168.7.2 'echo stop > /sys/class/remoteproc/remoteproc0/state 2>/dev/null; sleep 0.5; echo -n m7-app.elf > /sys/class/remoteproc/remoteproc0/firmware; echo start > /sys/class/remoteproc/remoteproc0/state; echo M7 state: $(cat /sys/class/remoteproc/remoteproc0/state)'",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    }
+  ]
+}

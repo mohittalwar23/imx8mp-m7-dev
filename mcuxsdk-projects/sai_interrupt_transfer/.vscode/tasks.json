@@ -1,0 +1,42 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "cmake",
+      "label": "CMake: build",
+      "command": "build",
+      "preset": "debug",
+      "targets": ["all"],
+      "group": {"kind": "build", "isDefault": true},
+      "problemMatcher": ["$gcc"],
+      "detail": "CMake template build task"
+    },
+    {
+      "type": "cmake",
+      "label": "CMake: clean",
+      "command": "clean",
+      "preset": "debug",
+      "problemMatcher": ["$gcc"],
+      "detail": "CMake template clean task"
+    },
+    {
+      "type": "cmake",
+      "label": "CMake: configure",
+      "command": "configure",
+      "preset": "debug",
+      "problemMatcher": ["$gcc"],
+      "detail": "CMake template configure task"
+    },
+    {
+      "label": "Copy to TFTP dir",
+      "type": "shell",
+      "dependsOn": "CMake: build",
+      "command": "cp debug/evkmimx8mp_sai_interrupt_transfer_cm7.bin ${HOME}/tftp/sai_tone.bin && echo 'Copied to ~/tftp/sai_tone.bin'",
+      "options": {"cwd": "${workspaceFolder}"},
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {"reveal": "always", "panel": "shared"},
+      "detail": "Build then copy .bin to TFTP dir. Load via U-Boot: setenv ipaddr 192.168.7.2; setenv serverip 192.168.7.1; setenv netmask 255.255.255.0; tftp 0x48000000 sai_tone.bin; cp.b 0x48000000 0x7e0000 ${filesize}; bootaux 0x7e0000"
+    }
+  ]
+}
