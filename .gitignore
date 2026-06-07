@@ -12,3 +12,4 @@ cmake_install.cmake
 build.ninja
 .ninja_deps
 .ninja_log
+zephyr/imx8mp-m7-zephyr-guide.md
