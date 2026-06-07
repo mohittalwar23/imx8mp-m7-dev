@@ -25,7 +25,7 @@ Two workflows are covered:
    - [SAI Interrupt Transfer — 1 kHz tone](#62-sai-interrupt-transfer)
    - [SAI Interrupt Record/Playback — mic loopback](#63-sai-interrupt-recordplayback)
    - [RPMsg String Echo — A53↔M7 communication](#64-rpmsg-string-echo)
-   - [SAI Low Power Audio — ⚠️ broken](#65-sai-low-power-audio)
+   - [SAI Low Power Audio — broken](#65-sai-low-power-audio)
 7. [Zephyr on M7](#7-zephyr-on-m7)
 8. [Known Issues](#8-known-issues)
 9. [Memory Map Reference](#9-memory-map-reference)
@@ -249,7 +249,7 @@ them back via RPMsg. Demonstrates the inter-processor communication channel.
 **What:** SRTM audio co-processor demo — Linux streams audio files via RPMsg,
 M7 drives the SAI hardware.
 **Deploy:** remoteproc (VS Code task)
-**Status:** ⚠️ M7 starts but no audio card appears on Linux
+**Status:** M7 starts but no audio card appears on Linux
 
 **Root cause:** SDK 26.06.00 SRTM protocol ≠ kernel 5.4.70 `imx-audio-rpmsg` driver.
 The sound card registration always fails with `-EPROBE_DEFER`.

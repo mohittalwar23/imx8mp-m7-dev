@@ -31,8 +31,8 @@ local SDK paths and has large build artifacts).
 
 | Project | SDK path | Deploy method | Status |
 |---|---|---|---|
-| `hello_world` | `demo_apps/hello_world` | remoteproc | ✅ working |
-| `sai_interrupt_transfer` | `driver_examples/sai/interrupt_transfer` | TFTP (U-Boot) | ✅ working |
-| `sai_interrupt_record_playback` | `driver_examples/sai/interrupt_record_playback` | TFTP (U-Boot) | ✅ working |
-| `sai_low_power_audio` | `demo_apps/sai_low_power_audio` | remoteproc | ⚠️ M7 starts, no audio (SRTM mismatch) |
-| `rpmsg_lite_str_echo_rtos` | `multicore_examples/rpmsg_lite_str_echo_rtos/remote` | remoteproc | ✅ working |
+| `hello_world` | `demo_apps/hello_world` | remoteproc | working |
+| `sai_interrupt_transfer` | `driver_examples/sai/interrupt_transfer` | TFTP (U-Boot) | working |
+| `sai_interrupt_record_playback` | `driver_examples/sai/interrupt_record_playback` | TFTP (U-Boot) | working |
+| `sai_low_power_audio` | `demo_apps/sai_low_power_audio` | remoteproc | M7 starts, no audio (SRTM mismatch) |
+| `rpmsg_lite_str_echo_rtos` | `multicore_examples/rpmsg_lite_str_echo_rtos/remote` | remoteproc | working |
