@@ -702,6 +702,15 @@ First time the board made a sound I controlled — a good feeling, and a real mi
 
 The one that mattered most. Speak into the mic, hear yourself live through the earphones.
 
+```
+  MCUX SDK version: 2026.06.00-pvw2
+SAI interrupt record playback example started!
+```
+
+**Note what's missing: there's no `finished`.** Unlike the tone in §7.2, this one stays running indefinitely — I watched the console for 30 seconds and it never printed another line. That silence is the correct behaviour here: the M7 is sitting in an interrupt-driven record/playback loop, and a quiet console means it's working. Two examples from the same SDK directory, opposite lifetimes — worth knowing before you conclude either one has hung.
+
+(Both SAI examples enter at the same place, incidentally — `stack = 0x20020000, pc = 0x0000048D`.)
+
 This gives you a **known-good reference** for SAI + codec configuration and the DMA buffer flow on the 8MP. That reference is the actual point of this whole exercise: when my own Zephyr audio path is silent later, I can trust the hardware and go straight to debugging my code. A baseline you know works is worth more than any amount of documentation.
 
 ### 7.4 RPMsg string echo — the multicore channel
