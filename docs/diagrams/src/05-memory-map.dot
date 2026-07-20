@@ -1,0 +1,22 @@
+digraph memmap {
+  bgcolor="white"; rankdir=LR; ranksep=1.1; nodesep=0.35;
+  node [fontname="DejaVu Sans Mono", shape=box, style="filled", penwidth=0, margin="0.2,0.14", fontsize=12];
+  edge [color="#c1121f", penwidth=2, arrowhead=none];
+  subgraph cluster_a { label="A53 view"; fontname="DejaVu Sans Bold"; fontsize=14; color="#1d3557"; style=rounded;
+    a1 [label="0x007E0000", fillcolor="#dbe4f0", fontcolor="#1d3557"];
+    a2 [label="0x48000000\nspare DDR", fillcolor="#dbe4f0", fontcolor="#1d3557"];
+  }
+  subgraph cluster_p { label="Physical memory"; fontname="DejaVu Sans Bold"; fontsize=14; color="#666666"; style=rounded;
+    p1 [label="ITCM\n128 KB\nM7 executes here", shape=cylinder, fillcolor="#2d6a4f", fontcolor="white", fontname="DejaVu Sans"];
+    p2 [label="DDR\n6 GiB", shape=cylinder, fillcolor="#adb5bd", fontcolor="white", fontname="DejaVu Sans"];
+  }
+  subgraph cluster_m { label="M7 view"; fontname="DejaVu Sans Bold"; fontsize=14; color="#2d6a4f"; style=rounded;
+    m1 [label="0x00000000\nreset vector", fillcolor="#d8ebe0", fontcolor="#2d6a4f"];
+    m2 [label="0x20000000\nDTCM / stack", fillcolor="#d8ebe0", fontcolor="#2d6a4f"];
+  }
+  a1 -> p1; p1 -> m1;
+  a2 -> p2 [color="#adb5bd"];
+  m2 -> p2 [style=invis];
+  lbl [label="same physical bytes,\ntwo different addresses", shape=plaintext, fontname="DejaVu Sans Bold", fontcolor="#c1121f", fontsize=12, fillcolor="white"];
+  p1 -> lbl [style=invis];
+}

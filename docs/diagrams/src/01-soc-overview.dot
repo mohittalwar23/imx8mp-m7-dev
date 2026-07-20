@@ -1,0 +1,17 @@
+digraph soc {
+  bgcolor="white"; rankdir=TB;
+  node [fontname="DejaVu Sans", shape=box, style="rounded,filled", penwidth=0, margin="0.25,0.18"];
+  edge [fontname="DejaVu Sans", fontsize=11, color="#555555"];
+  subgraph cluster_soc {
+    label="i.MX 8M Plus SoC"; fontname="DejaVu Sans Bold"; fontsize=15;
+    color="#cccccc"; style="rounded"; margin=20;
+    a53 [label="4x Cortex-A53\nruns Linux\nthe \"big\" side", fillcolor="#1d3557", fontcolor="white", fontsize=13];
+    m7  [label="1x Cortex-M7\nZephyr / FreeRTOS / bare metal\nthe real-time side", fillcolor="#2d6a4f", fontcolor="white", fontsize=13];
+    dsp [label="HiFi4 DSP\naudio / ML offload", fillcolor="#e9ecef", fontcolor="#222222", fontsize=12];
+    npu [label="NPU\n2.3 TOPS", fillcolor="#e9ecef", fontcolor="#222222", fontsize=12];
+    a53 -> m7 [dir=both, label="  RPMsg over\n  shared memory", penwidth=2, color="#c1121f", fontcolor="#c1121f"];
+    {rank=same; a53; m7;}
+    {rank=same; dsp; npu;}
+    a53 -> dsp [style=invis]; m7 -> npu [style=invis];
+  }
+}

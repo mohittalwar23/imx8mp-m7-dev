@@ -1,0 +1,15 @@
+digraph rproc {
+  bgcolor="white"; rankdir=TB; ranksep=0.4;
+  node [fontname="DejaVu Sans", shape=box, style="rounded,filled", penwidth=0, margin="0.24,0.14", fontsize=12];
+  edge [color="#555555"];
+  s1 [label="1.  scp zephyr.elf  ->  /lib/firmware/m7-app.elf", fillcolor="#dbe4f0", fontcolor="#1d3557"];
+  s2 [label="2.  echo stop  >  .../remoteproc0/state", fillcolor="#dbe4f0", fontcolor="#1d3557"];
+  s3 [label="3.  echo -n \"m7-app.elf\"  >  .../remoteproc0/firmware", fillcolor="#dbe4f0", fontcolor="#1d3557"];
+  s4 [label="4.  echo start  >  .../remoteproc0/state", fillcolor="#dbe4f0", fontcolor="#1d3557"];
+  s5 [label="imx-rproc parses ELF program headers\nand checks them against DTB carveouts", fillcolor="#ffd166", fontcolor="#222222"];
+  s6 [label="loads segments, releases M7 from reset", fillcolor="#2d6a4f", fontcolor="white"];
+  s7 [label="banner appears on /dev/ttyUSB3", fillcolor="#2d6a4f", fontcolor="white", shape=box3d, style=filled];
+  s1 -> s2 -> s3 -> s4 -> s5 -> s6 -> s7;
+  note [label="whole cycle: ~3 seconds, no reboot", shape=note, fillcolor="#fff3cd", fontcolor="#222222", fontsize=11, style=filled];
+  s7 -> note [style=invis];
+}

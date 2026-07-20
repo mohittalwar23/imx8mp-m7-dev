@@ -1,0 +1,12 @@
+digraph tftp {
+  bgcolor="white"; rankdir=LR; ranksep=0.8;
+  node [fontname="DejaVu Sans", shape=box, style="rounded,filled", penwidth=0, margin="0.22,0.16", fontsize=12];
+  edge [fontname="DejaVu Sans Bold", fontsize=11];
+  lap [label="Laptop\ndnsmasq TFTP\n~/tftp/sync.bin", fillcolor="#1d3557", fontcolor="white"];
+  ddr [label="DDR\n0x48000000\nlanding pad", fillcolor="#adb5bd", fontcolor="white"];
+  itcm [label="ITCM\n0x7E0000\n128 KB", fillcolor="#2d6a4f", fontcolor="white"];
+  m7 [label="Cortex-M7\nexecuting from\nits own 0x00000000", fillcolor="#2d6a4f", fontcolor="white", shape=box3d, style=filled];
+  lap -> ddr [label=" 1. tftp\n over Ethernet\n (slow, can fail) ", color="#1d3557", fontcolor="#1d3557", penwidth=2];
+  ddr -> itcm [label=" 2. cp.b\n local copy\n (fast, atomic) ", color="#c1121f", fontcolor="#c1121f", penwidth=2];
+  itcm -> m7 [label=" 3. bootaux\n release reset ", color="#2d6a4f", fontcolor="#2d6a4f", penwidth=2];
+}

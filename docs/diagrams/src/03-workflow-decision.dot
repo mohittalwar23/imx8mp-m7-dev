@@ -1,0 +1,11 @@
+digraph decide {
+  bgcolor="white"; rankdir=TB; ranksep=0.6; nodesep=0.8;
+  node [fontname="DejaVu Sans", shape=box, style="rounded,filled", penwidth=0, margin="0.24,0.18", fontsize=12];
+  edge [fontname="DejaVu Sans Bold", fontsize=12, color="#555555"];
+  q1 [label="Does the M7 need exclusive access\nto peripherals (e.g. audio)?", shape=diamond, fillcolor="#ffd166", fontcolor="#222222", margin="0.15,0.05"];
+  pa [label="PATH A - U-Boot TFTP\n\nLoad before Linux exists.\nM7 owns the hardware.\nReload = power cycle.\n(Part 4)", fillcolor="#2d6a4f", fontcolor="white"];
+  pb [label="PATH B - Linux remoteproc\n\nRPMsg between cores.\nHardware shared with Linux.\nReload = ~3 s, no reboot.\n(Part 6)", fillcolor="#1d3557", fontcolor="white"];
+  q1 -> pa [label="  yes  ", fontcolor="#2d6a4f", color="#2d6a4f", penwidth=2];
+  q1 -> pb [label="  no  ", fontcolor="#1d3557", color="#1d3557", penwidth=2];
+  {rank=same; pa; pb;}
+}

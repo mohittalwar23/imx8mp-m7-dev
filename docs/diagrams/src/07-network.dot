@@ -1,0 +1,10 @@
+digraph net {
+  bgcolor="white"; rankdir=LR; ranksep=1.0;
+  node [fontname="DejaVu Sans", shape=box, style="rounded,filled", penwidth=0, margin="0.24,0.18", fontsize=12];
+  edge [fontname="DejaVu Sans", fontsize=11];
+  lap [label="Laptop\n192.168.7.1\ndnsmasq TFTP :69\n~/tftp/", fillcolor="#1d3557", fontcolor="white"];
+  bd  [label="i.MX8MP EVK\n192.168.7.2\nU-Boot", fillcolor="#2d6a4f", fontcolor="white"];
+  wifi [label="WiFi -> internet\nstays default route", shape=ellipse, fillcolor="#e9ecef", fontcolor="#495057"];
+  lap -> bd [dir=both, label="  direct Ethernet cable\n  no router, no DHCP  ", penwidth=2, color="#c1121f", fontcolor="#c1121f"];
+  wifi -> lap [style=dashed, color="#868e96", arrowhead=none];
+}

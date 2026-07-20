@@ -1,0 +1,15 @@
+digraph serial {
+  bgcolor="white"; rankdir=LR; ranksep=0.9;
+  node [fontname="DejaVu Sans", shape=box, style="rounded,filled", penwidth=0, margin="0.22,0.16", fontsize=12];
+  edge [color="#999999"];
+  j15 [label="J15 micro-B\nFT4232H\n0403:6011", fillcolor="#6c757d", fontcolor="white"];
+  p0 [label="/dev/ttyUSB0\nunused", fillcolor="#f1f3f5", fontcolor="#868e96"];
+  p1 [label="/dev/ttyUSB1\nunused", fillcolor="#f1f3f5", fontcolor="#868e96"];
+  p2 [label="/dev/ttyUSB2\nA53 console\nU-Boot + Linux", fillcolor="#1d3557", fontcolor="white"];
+  p3 [label="/dev/ttyUSB3\nM7 console\nUART4", fillcolor="#2d6a4f", fontcolor="white"];
+  j15 -> p0; j15 -> p1;
+  j15 -> p2 [penwidth=2, color="#1d3557"];
+  j15 -> p3 [penwidth=2, color="#2d6a4f"];
+  note [label="all four: 115200 8N1\nJ15 is UART-only - no JTAG", shape=note, fillcolor="#fff3cd", fontcolor="#222222", fontsize=11, style=filled];
+  p3 -> note [style=invis];
+}

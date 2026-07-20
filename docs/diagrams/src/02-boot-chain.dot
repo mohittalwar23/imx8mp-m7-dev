@@ -1,0 +1,16 @@
+digraph boot {
+  bgcolor="white"; rankdir=LR; nodesep=0.45; ranksep=0.55;
+  node [fontname="DejaVu Sans", shape=box, style="rounded,filled", penwidth=0, margin="0.2,0.15", fontsize=12];
+  edge [fontname="DejaVu Sans", fontsize=11, color="#555555"];
+  pwr [label="Power on", shape=ellipse, fillcolor="#dee2e6"];
+  spl [label="U-Boot SPL\nDRAM init", fillcolor="#e9ecef"];
+  atf [label="ATF / BL31", fillcolor="#e9ecef"];
+  ub  [label="U-Boot", fillcolor="#e9ecef"];
+  lnx [label="Linux", fillcolor="#1d3557", fontcolor="white"];
+  m7a [label="M7 runs\nyour firmware", fillcolor="#2d6a4f", fontcolor="white", shape=box3d, style=filled];
+  m7b [label="M7 runs\nyour firmware", fillcolor="#2d6a4f", fontcolor="white", shape=box3d, style=filled];
+  pwr -> spl -> atf -> ub;
+  ub -> m7a [label="  PATH A\n  bootaux  ", fontcolor="#2d6a4f", color="#2d6a4f", penwidth=2];
+  ub -> lnx [label="  boot  "];
+  lnx -> m7b [label="  PATH B\n  remoteproc  ", fontcolor="#1d3557", color="#1d3557", penwidth=2];
+}
