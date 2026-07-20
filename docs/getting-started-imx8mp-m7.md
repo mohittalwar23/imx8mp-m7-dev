@@ -59,7 +59,7 @@ Host side — my versions, for reference on skew:
 |---|---|
 | Host OS | Ubuntu, kernel 6.17 |
 | picocom | v3.1 |
-| MCUXpresso SDK | **26.06.00** |
+| MCUXpresso SDK | **26.06.00** (reports `2026.06.00-pvw2`) |
 | Zephyr / Zephyr SDK | **4.4.99** / 1.0.1 |
 
 ```bash
@@ -189,6 +189,8 @@ means *"release the M7 from reset, pointing at the A53-side address of the M7's 
 ```
 
 You handed it `0x7e0000`, and it reports a **`pc` of `0x00000E55`** — a low address in the M7's own map, not the A53's. Same bytes, two names. The stack at `0x20001948` is DTCM as the M7 sees it. That one line is the dual-address idea made concrete.
+
+Those two values aren't magic constants — they're read out of whatever vector table you just loaded, so they change per firmware. The MCUXpresso SAI example reports `stack = 0x20020000, pc = 0x0000048D` instead. Different entry point, same two regions.
 
 ### Why the load takes two stages
 
@@ -419,7 +421,24 @@ Net:   eth0: ethernet@30be0000, eth1: ethernet@30bf0000 [PRIME]
 
 The EVK has **two RJ45 jacks**. `eth1` is `[PRIME]` — U-Boot's default. My cable is in the *other* jack (`eth0`). So every `tftp` began by waiting ~40 seconds for auto-negotiation on an empty port, timing out with `-110` (`ETIMEDOUT`), then falling back to `eth0` and working perfectly.
 
-It's not fatal — it self-recovers — which is exactly why you can donate 40 seconds to every load for weeks without noticing. The fix is the `setenv ethact eth0` already in §4.2, and it's verified: **the dots disappear entirely** and `tftp` goes straight to `TFTP from server`. Moving the cable to the `[PRIME]` jack does the same job in hardware.
+It's not fatal — it self-recovers — which is exactly why you can donate 40 seconds to every load for weeks without noticing.
+
+The fix is the `setenv ethact eth0` already in §4.2. Same board, same cable, with it set:
+
+```
+u-boot=> tftp 0x48000000 sai_tone.bin
+ethernet@30be0000 Waiting for PHY auto negotiation to complete.... done
+Using ethernet@30be0000 device
+TFTP from server 192.168.7.1; our IP address is 192.168.7.2
+Filename 'sai_tone.bin'.
+Load address: 0x48000000
+Loading: *######
+         16.4 MiB/s
+done
+Bytes transferred = 85748 (14ef4 hex)
+```
+
+Four dots and `done`, instead of forty-odd and `TIMEOUT !`. Moving the cable to the `[PRIME]` jack does the same job in hardware.
 
 Check your own `Net:` line — which device is PRIME is a property of your board and which jack you used, so don't assume mine matches yours.
 
@@ -662,7 +681,20 @@ Prints `Hello World` once to `ttyUSB3`, then halts. Boring on purpose — it pro
 ### 7.2 SAI interrupt transfer — a 1 kHz tone
 **SDK path:** `driver_examples/sai/interrupt_transfer` · **Load via:** TFTP (Linux must *not* be booted)
 
-Plug headphones into **J6**, load `sai_tone.bin`, get a continuous 1 kHz sine out the jack. `ttyUSB3` prints `SAI example started!`. First time the board made a sound I controlled — a good feeling, and a real milestone for audio work.
+Plug headphones into **J6** and load `sai_tone.bin` with the Part 4 sequence. You get a 1 kHz sine out the jack, and this on `ttyUSB3`:
+
+```
+  MCUX SDK version: 2026.06.00-pvw2
+SAI example started!
+
+ SAI example finished!
+```
+
+**It plays once and stops** — note `finished`, not a loop. I'd assumed it was a continuous tone until I actually listened: you get a single beep, and then silence with the M7 still halted at the end of `main`. If you blink you'll miss it, and you'll conclude the example is broken when it isn't. Power-cycle and reload to hear it again.
+
+First time the board made a sound I controlled — a good feeling, and a real milestone for audio work.
+
+> That `-pvw2` suffix on the SDK version string means **preview**. Worth knowing when you're deciding whether an odd behaviour is your bug or the SDK's.
 
 ### 7.3 SAI record/playback — real-time mic loopback
 **SDK path:** `driver_examples/sai/interrupt_record_playback` · **Load via:** TFTP
